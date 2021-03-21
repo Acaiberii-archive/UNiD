@@ -15,7 +15,7 @@ Table of Contents:
 
 
   # Home
-  Unid console is a new Windows command line utility that brings you the best.
+  Unid console is a new Windows command line utility that brings you the easiest and fastest commands.
   
   # Releases
   Releases are published when a new release is built.
