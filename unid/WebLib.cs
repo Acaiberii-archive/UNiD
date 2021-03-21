@@ -10,13 +10,10 @@ namespace unid
     {
         public static void ParseDownload(string[] args)
         {
-            Download.DownloadFile(args[1], args[2]);
+            Download.DownloadFile(args[2], args[3]);
         }
         public static void DownloadFile(string inurl, string outpath)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("<------------- UNiD ------------->");
-            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Downloading from " + inurl + " to " + outpath);
             try
             {
@@ -38,13 +35,10 @@ namespace unid
     {
         public static void ParseUpload(string[] args)
         {
-            Upload.UploadFile(args[1], args[2]);
+            Upload.UploadFile(args[2], args[3]);
         }
         public static void UploadFile(string outurl, string inpath)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("<------------- UNiD ------------->");
-            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Uploading from " + inpath + " to " + outurl);
             try
             {

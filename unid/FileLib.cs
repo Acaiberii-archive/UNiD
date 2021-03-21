@@ -5,53 +5,117 @@ using System.Text;
 
 namespace unid
 {
-    static class copy
+    static class file
     {
-        public static void ParseCopy(string[] args)
+        public static class copy
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("<------------- UNiD ------------->");
-            try
+            public static void ParseCopy(string[] args)
             {
-                File.Copy(args[2], args[3]);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("File copied.");
+                try
+                {
+                    File.Copy(args[2], args[3]);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("File copied.");
+                }
+                catch (Exception er)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(er.Message);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
-            catch (Exception er)
+        }
+        public static class remove
+        {
+            public static void ParseRemove(string[] args)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(er.Message);
-                Console.ForegroundColor = ConsoleColor.White;
+                try
+                {
+                    if (File.Exists(args[2]))
+                    {
+                        Console.WriteLine("Deleting file " + args[2] + "...");
+                        File.Delete(args[2]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("File deleted.");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("The file, " + args[2] + " does not exist.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
+                catch (Exception er)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(er.Message);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
         }
     }
-    static class remove
+    static class dir
     {
-        public static void ParseRemove(string[] args)
+        public static class copy
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("<------------- UNiD ------------->");
-            try
+            public static void ParseCopy(string[] args)
             {
-                if (File.Exists(args[2]))
+                try
                 {
-                    Console.WriteLine("Deleting file " + args[2] + "...");
-                    File.Delete(args[2]);
+                    foreach (string fi in Directory.GetFiles(args[2]))
+                    {
+                        File.Copy(fi, args[3]);
+                        Console.WriteLine(fi + "was copied.");
+                    }
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("File deleted.");
+                    Console.WriteLine("Directory copied.");
                 }
-                else
+                catch (Exception er)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("The file, " + args[2] + " does not exist.");
+                    Console.WriteLine(er.Message);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-            catch (Exception er)
+        }
+        public static class remove
+        {
+            public static void ParseRemove(string[] args)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(er.Message);
-                Console.ForegroundColor = ConsoleColor.White;
+                try
+                {
+                    foreach (string fi in Directory.GetFiles(args[2]))
+                    {
+                        File.Delete(fi);
+                    }
+                    Directory.Delete(args[2]);
+                }
+                catch (Exception er)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(er.Message);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+        }
+        public static class list
+        {
+            public static void ParseList(string[] args)
+            {
+                try
+                {
+                    Console.WriteLine("-- Files and subfolders in " + args[2]);
+                    foreach (string fi in Directory.GetFiles(args[2], "*", SearchOption.AllDirectories))
+                    {
+                        Console.WriteLine("-" + fi + " with attributes " + File.GetAttributes(fi) + " and creation time of " + File.GetCreationTime(fi));
+                    }
+                }
+                catch (Exception er)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(er.Message);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
         }
     }

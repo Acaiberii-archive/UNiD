@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace unid
 {
@@ -15,10 +17,22 @@ namespace unid
             {
                 ar += arg + " ";
             }
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("<------------- UNiD ------------->");
-            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(ar);
+        }
+        public static void ParseTypewrite(string[] args)
+        {
+            args[0] = string.Empty;
+            string ar = string.Empty;
+            foreach (string arg in args)
+            {
+                ar += arg + " ";
+            }
+            foreach (char ch in ar)
+            {
+                Thread.Sleep(100);
+                Console.Write(ch);
+            }
+            Console.Write("\n");
         }
     }
     class readfile
@@ -27,9 +41,6 @@ namespace unid
         {
             try
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("<------------- UNiD ------------->");
-                Console.ForegroundColor = ConsoleColor.White;
                 StreamReader rflib = new StreamReader(args[1]);
                 string thefile = rflib.ReadToEnd();
                 Console.WriteLine(thefile);
@@ -48,8 +59,6 @@ namespace unid
         {
             args[0] = string.Empty;
             string cm = string.Empty;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("<------------- UNiD ------------->");
             foreach (string arg in args)
             {
                 cm += arg;
