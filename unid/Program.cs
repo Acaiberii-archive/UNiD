@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace unid
 {
@@ -13,7 +14,7 @@ namespace unid
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("<=------------- UNiD Console -------------=>");
+            Console.WriteLine("<=------------- UNiD -------------=>");
             Console.ForegroundColor = ConsoleColor.White;
             if (args.Length == 0)
             {
@@ -112,6 +113,18 @@ namespace unid
                                 file.remove.ParseRemove(args);
                             }
                         }
+                        else if (args[1] == "info")
+                        {
+                            if (args.Length != 3) {
+                                Console.WriteLine("One argument is required for the command.");
+                            }
+                            else {
+                                Console.WriteLine($"File path: {args[2]}");
+                                Console.WriteLine($"File creation date: {File.GetCreationTime(args[2])}");
+                                Console.WriteLine($"Last accessed: {File.GetLastAccessTime(args[2])}");
+                                Console.WriteLine($"File hash: {hash.CalculateMD5(args[2])}");
+                            }
+                        }
                         else if (args[1] == "hash")
                         {
                             if (args.Length != 3)
@@ -127,7 +140,7 @@ namespace unid
                                 }
                                 else
                                 {
-                                    
+
                                     Console.WriteLine("The file, " + args[2] + " does not exist.");
                                 }
                             }
@@ -142,9 +155,9 @@ namespace unid
                 {
                     if (args.Length < 2)
                     {
-                        
-                        
-                        
+
+
+
                         Console.WriteLine("A subcommand is required.");
                     }
                     else
@@ -251,6 +264,7 @@ namespace unid
                 }
                 else if (args[0] == "package")
                 {
+                    Console.WriteLine("<=----- Unid Package Manager -----=>");
                     if (args.Length < 2)
                     {
                         Console.WriteLine("A subcommand is required.");
@@ -265,6 +279,8 @@ namespace unid
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.ForegroundColor = ConsoleColor.White;
                                 pkg.ParsePkg(args);
                             }
                         }
@@ -274,6 +290,8 @@ namespace unid
                             Console.WriteLine(">==->==->==- Packages");
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("py - Python 3.9.2 (latest release as of 3/20/21)");
+                            Console.WriteLine("java - Java 8 (recommended release on java.com)");
+                            Console.WriteLine("node - NodeJS Server-Side JavaScript");
                         }
                         else
                         {
@@ -281,16 +299,109 @@ namespace unid
                         }
                     }
                 }
+                else if (args[0] == "about")
+                {
+                    test.ParseTest();
+                }
+                else if (args[0] == "test")
+                {
+                    try
+                    {
+                        Console.WriteLine("-- The console's interface and UNiD are working correctly.");
+                        Console.WriteLine($"- Console input stream type: {Console.In.ToString()}");
+                        Console.WriteLine($"- Console output stream type: {Console.Out.ToString()}");
+                        Console.WriteLine($"- Console error stream type: {Console.Error.ToString()}");
+                        Console.WriteLine($"- Console foreground/background: {Console.ForegroundColor.ToString()}/{Console.BackgroundColor.ToString()}");
+                    }
+                    catch (Exception er)
+                    {
+                        Console.WriteLine("-- The console may not be working properly.");
+                        Console.WriteLine($"- Exception: {er.Message}. Try restarting the command prompt or submitting an issue at https://www.github.com/AcaiBerii/UNiD");
+                        Console.Beep();
+                    }
+                }
+                else if (args[0] == "debug")
+                {
+                    if (args.Length < 2)
+                    {
+                        Console.WriteLine("A subcommand is required.");
+                    }
+                    else
+                    {
+                        if (args[1] == "error")
+                        {
+                            throw new ErrorToThrow();
+                        }
+                        else if (args[1] == "web")
+                        {
+                            WebClient wr = new WebClient();
+                            try
+                            {
+                                string wres = wr.DownloadString("https://www.example.com");
+                                Console.WriteLine(wr);
+                                Console.WriteLine("Request OK");
+                            }
+                            catch (Exception er) {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(er.Message);
+                                Console.ForegroundColor = ConsoleColor.White;
+                                if (er.Message.ToLower().Contains("no such host is known"))
+                                {
+                                    Console.WriteLine("UNiD Debug Err 01: No connection to example.com available.");
+                                    Console.WriteLine("Please check your internet connection.");
+                                }
+                                Console.Beep();
+                            }
+                        } 
+                        else
+                        {
+                            Console.WriteLine("Invalid subcommand -- Use help for help.");
+                        }
+                    }
+                }
+                else if (args[0] == "kill")
+                {
+                    if (args.Length < 2)
+                    {
+                        Console.WriteLine("An argument is required.");
+                    }
+                    else
+                    {
+                        args[0] = string.Empty;
+                        string argg = string.Empty;
+                        foreach (string arg in args)
+                        {
+                            argg += arg;
+                        }
+                        foreach (System.Diagnostics.Process pr in System.Diagnostics.Process.GetProcesses())
+                        {
+                            try
+                            {
+                                if (pr.ProcessName.Contains(argg))
+                                {
+                                    pr.Kill();
+                                }
+                            }
+                            catch (Exception er)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(er.Message);
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                        }
+                        Console.WriteLine("Attempted to find and kill program with name containing " + argg + ".");
+                    }
+                }
                 else
                 {
                     Console.WriteLine("Invalid command -- Use help for help.");
                 }
-                
+
             }
         }
         static void DisplayHelp()
         {
-            
+
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(">==->==->==- Commands");
             Console.ForegroundColor = ConsoleColor.White;
@@ -305,6 +416,15 @@ namespace unid
             Console.WriteLine("theme - Changes the command line's theme. Subcommands: bright, dark, dracula.");
             Console.WriteLine("typewrite - Types a given string with delay between each character.");
             Console.WriteLine("package - Installs packages. Subcommands: install, list.");
+            Console.WriteLine("about - Shows information about UNiD.");
+            Console.WriteLine("debug - Commands to debug UNiD with. Subcommands: error, web.");
+            Console.WriteLine("kill - Kills a process based on the given argument.");
+        }
+    }
+    class ErrorToThrow : Exception
+    {
+        public ErrorToThrow() {
+            throw new ErrorToThrow();
         }
     }
 }

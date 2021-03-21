@@ -104,7 +104,7 @@ namespace unid
             {
                 try
                 {
-                    Console.WriteLine("-- Files and subfolders in " + args[2]);
+                    Console.WriteLine("-- Index of " + args[2] + " files.");
                     foreach (string fi in Directory.GetFiles(args[2], "*", SearchOption.AllDirectories))
                     {
                         Console.WriteLine("-" + fi + " with attributes " + File.GetAttributes(fi) + " and creation time of " + File.GetCreationTime(fi));

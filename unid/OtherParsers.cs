@@ -90,99 +90,96 @@ namespace unid
     {
         public static void ParsePkg(string[] args)
         {
-            WebClient downloadapi = new WebClient();
-            string user = "";
-            foreach (string dir in Directory.GetDirectories(@"C:\Users\"))
+            try
             {
-                if (dir.Contains(Environment.UserName))
+                Console.WriteLine("Preparing package manager for use.");
+                WebClient downloadapi = new WebClient();
+                string user = "";
+                foreach (string dir in Directory.GetDirectories(@"C:\Users\"))
                 {
-                    user = dir;
-                }
-            }
-            if (Directory.Exists(user + @"\UNiDPackages"))
-            {
-                Console.WriteLine("Directory exists. Selecting package.");
-                if (args[2] == "py")
-                {
-                    if (File.Exists(user + $@"\UNiDPackages\{args[2]}.exe"))
+                    if (dir.Contains(Environment.UserName))
                     {
-                        Console.WriteLine($"Overwriting your previous {args[2]} installation. You need to run the command again.");
-                        File.Delete(user + $@"\UNiDPackages\{args[2]}.exe");
+                        user = dir;
+                    }
+                }
+                if (Directory.Exists(user + @"\UNiDPackages"))
+                {
+                    Console.WriteLine("Directory exists. Selecting package.");
+                    if (args[2] == "py")
+                    {
+                        ParseDL(user, args, downloadapi);
+                    }
+                    else if (args[2] == "java")
+                    {
+                        ParseDL(user, args, downloadapi);
+                    }
+                    else if (args[2] == "node")
+                    {
+                        ParseDL(user, args, downloadapi);
                     }
                     else
                     {
-                        downloadapi.DownloadFile($"https://unid.studiouifxdesig.repl.co/{args[2]}.exe", user + $@"\UNiDPackages\{args[2]}.exe");
-                        try
-                        {
-                            bool isrunning = admininter.Elevate(user + $@"\UNiDPackages\{args[2]}.exe");
-                            if (isrunning == true)
-                            {
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.WriteLine($"Elevated {args[2]}.");
-                            }
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Could not elevate program.");
-                            }
-                        }
-                        catch (Exception er)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine(er.Message);
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                        Console.WriteLine(@$"{args[2]} installed.");
-                    }
-                }
-                else if (args[2] == "java")
-                {
-                    if (File.Exists(user + $@"\UNiDPackages\{args[2]}.exe"))
-                    {
-                        Console.WriteLine($"Overwriting your previous {args[2]} installation. You need to run the command again.");
-                        File.Delete(user + $@"\UNiDPackages\{args[2]}.exe");
-                    }
-                    else
-                    {
-                        downloadapi.DownloadFile($"https://unid.studiouifxdesig.repl.co/{args[2]}.exe", user + $@"\UNiDPackages\{args[2]}.exe");
-                        try
-                        {
-                            bool isrunning = admininter.Elevate(user + $@"\UNiDPackages\{args[2]}.exe");
-                            if (isrunning == true)
-                            {
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.WriteLine($"Elevated {args[2]}.");
-                            }
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Could not elevate program.");
-                            }
-                        }
-                        catch (Exception er)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine(er.Message);
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                        Console.WriteLine(@$"{args[2]} installed.");
+                        Console.WriteLine("Unknown package. Try again, or use the list subcommand.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Unknown package. Try again, or use the list subcommand.");
+                    try
+                    {
+                        Directory.CreateDirectory(user + @"\UNiDPackages");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("User information verified and directory created. Please retype the command.");
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("You won't have to do this again unless you switch accounts.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    catch (Exception er)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(er.Message);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
                 }
+            }
+            catch (Exception er)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(er.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
+        public static void ParseDL(string user, string[] args, WebClient downloadapi)
+        {
+            if (File.Exists(user + $@"\UNiDPackages\{args[2]}.exe"))
+            {
+                Console.WriteLine($"Overwriting your previous {args[2]} installation. You need to run the command again to continue installing.");
+                File.Delete(user + $@"\UNiDPackages\{args[2]}.exe");
             }
             else
             {
                 try
                 {
-                    Directory.CreateDirectory(user + @"\UNiDPackages");
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("User information verified and directory created. Please retype the command.");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("You won't have to do this again unless you switch accounts.");
+                    downloadapi.DownloadFile($"https://unid.studiouifxdesig.repl.co/{args[2]}.exe", user + $@"\UNiDPackages\{args[2]}.exe");
+                }
+                catch (WebException er)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(er.Message);
                     Console.ForegroundColor = ConsoleColor.White;
+                }
+                try
+                {
+                    bool isrunning = admininter.Elevate(user + $@"\UNiDPackages\{args[2]}.exe");
+                    if (isrunning == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine($"Elevated {args[2]}.");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Could not elevate program.");
+                    }
                 }
                 catch (Exception er)
                 {
@@ -190,8 +187,8 @@ namespace unid
                     Console.WriteLine(er.Message);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
+                Console.WriteLine(@$"{args[2]} installed.");
             }
-            
         }
     }
 }
