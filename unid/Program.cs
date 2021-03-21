@@ -265,55 +265,7 @@ namespace unid
                             }
                             else
                             {
-                                WebClient downloadapi = new WebClient();
-                                string user = "";
-                                foreach (string dir in Directory.GetDirectories(@"C:\Users\"))
-                                {
-                                    if (dir.Contains(Environment.UserName))
-                                    {
-                                        user = dir;
-                                    }
-                                }
-                                if (Directory.Exists(user + @"\UNiDPackages"))
-                                {
-                                    Console.WriteLine("Directory exists. Selecting package.");
-                                    if (args[2] == "py")
-                                    {
-                                        if (File.Exists(user + @"\UNiDPackages\python.exe"))
-                                        {
-                                            Console.WriteLine("Overwriting your previous Python installation. Don't worry, as this won't remove a previous version.");
-                                            File.Delete(user + @"\UNiDPackages\python.exe");
-                                        }
-                                        else
-                                        {
-                                            downloadapi.DownloadFile("https://www.python.org/ftp/python/3.9.2/python-3.9.2.exe", user + @"\UNiDPackages\python.exe");
-                                            Process.Start(user + @"\UNiDPackages\python.exe");
-                                            Console.WriteLine("Python installed.");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Unknown package. Try again, or use the list subcommand.");
-                                    }
-                                }
-                                else
-                                {
-                                    try
-                                    {
-                                        Directory.CreateDirectory(user + @"\UNiDPackages");
-                                        Console.ForegroundColor = ConsoleColor.Blue;
-                                        Console.WriteLine("User information verified and directory created. Please retype the command.");
-                                        Console.ForegroundColor = ConsoleColor.Cyan;
-                                        Console.WriteLine("You won't have to do this again unless you switch accounts.");
-                                        Console.ForegroundColor = ConsoleColor.White;
-                                    }
-                                    catch (Exception er)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine(er.Message);
-                                        Console.ForegroundColor = ConsoleColor.White;
-                                    }
-                                }
+                                pkg.ParsePkg(args);
                             }
                         }
                         else if (args[1] == "list")
