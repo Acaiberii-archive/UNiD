@@ -13,16 +13,16 @@ namespace unid
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
         static void Main(string[] args)
         {
-            Console.Title = $"UNiD CMD - Parsing command {args[0]}.";
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("<=------------- UNiD -------------=>");
-            Console.ForegroundColor = ConsoleColor.White;
-            if (args.Length == 0)
+            if (args.Length < 1)
             {
                 Console.WriteLine("Please enter a command -- Use help for help.");
             }
             else
             {
+                Console.Title = $"UNiD CMD - Parsing command {args[0]}.";
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("<=------------- UNiD -------------=>");
+                Console.ForegroundColor = ConsoleColor.White;
                 if (args[0] == "help")
                 {
                     DisplayHelp();

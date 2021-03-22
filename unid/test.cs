@@ -14,7 +14,7 @@ namespace unid
             System.Threading.Thread.Sleep(100);
             Console.WriteLine("{}       {}  {}    {} {}       {}       {}      {}");
             System.Threading.Thread.Sleep(100);
-            Console.WriteLine("  {}{}{}     {}       {}  {}{}{}{}{}{}  {}{}{}{}");
+            Console.WriteLine("  {}{}{}{}   {}       {}  {}{}{}{}{}{}  {}{}{}{}");
             System.Threading.Thread.Sleep(100);
             Console.WriteLine("UNiD 1.1 - UNiD by AcaiBerii/SumWhatSteve.");
             Console.WriteLine("UNiD, the open-source command line utility.");
