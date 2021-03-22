@@ -1,8 +1,8 @@
 Table of Contents:
-[Home](#-Home)
-[Releases](#-Releases)
-[Path](#-Path)
-[Running](#-Running)
+[Home](#-Home) | 
+[Releases](#-Releases) | 
+[Path](#-Path) | 
+[Running](#-Running) | 
 [Building](#-Building)
 
 
