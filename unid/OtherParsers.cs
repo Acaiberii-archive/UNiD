@@ -113,6 +113,10 @@ namespace unid
                     {
                         ParseDL(user, args, downloadapi);
                     }
+                    else if (args[2] == "node")
+                    {
+                        ParseDL(user, args, downloadapi);
+                    }
                     else
                     {
                         Console.WriteLine("Unknown package. Try again, or use the list subcommand.");
@@ -158,7 +162,7 @@ namespace unid
                     if (args[2] == "node")
                     {
                         downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/master/node.msi", user + $@"\UNiDPackages\node.msi");
-                        admininter.Elevate(user + $@"\UNiDPackages\{args[2]}.exe");
+                        admininter.Elevate(user + $@"\UNiDPackages\node.msi");
                     }
                     else
                     {
