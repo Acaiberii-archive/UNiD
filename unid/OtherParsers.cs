@@ -157,13 +157,13 @@ namespace unid
                 {
                     if (args[2] == "node")
                     {
-                        downloadapi.DownloadFile($"", user + $@"\UNiDPackages\node.msi");
-                        Process.Start(user + $@"\UNiDPackages\node.msi");
+                        downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/master/node.msi", user + $@"\UNiDPackages\node.msi");
+                        admininter.Elevate(user + $@"\UNiDPackages\{args[2]}.exe");
                     }
                     else
                     {
-                        downloadapi.DownloadFile($"", user + $@"\UNiDPackages\{args[2]}.exe");
-                        Process.Start(user + $@"\UNiDPackages\{args[2]}.exe");
+                        downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/master/{args[2]}.exe", user + $@"\UNiDPackages\{args[2]}.exe");
+                        admininter.Elevate(user + $@"\UNiDPackages\{args[2]}.exe");
                     }
                 }
                 catch (WebException er)
