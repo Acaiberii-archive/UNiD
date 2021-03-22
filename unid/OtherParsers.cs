@@ -126,6 +126,10 @@ namespace unid
                     {
                         ParseDL(user, args, downloadapi);
                     }
+                    else if (args[2] == "register")
+                    {
+                        ParseDL(user, args, downloadapi);
+                    }
                     else
                     {
                         Console.WriteLine("Unknown package. Try again, or use the list subcommand.");
@@ -171,6 +175,10 @@ namespace unid
                     if (args[2] == "node")
                     {
                         downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/master/node.msi", user + $@"\UNiDPackages\node.msi");
+                    }
+                    else if (args[2] == "register")
+                    {
+                        downloadapi.DownloadFile("https://github.com/AcaiBerii/UNiD/releases/download/1.0.0-x32/register.zip", user + @"\UNiDPackages\register.zip");
                     }
                     else
                     {
