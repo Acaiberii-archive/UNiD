@@ -141,7 +141,6 @@ namespace unid
                                 }
                                 else
                                 {
-
                                     Console.WriteLine("The file, " + args[2] + " does not exist.");
                                 }
                             }
