@@ -11,7 +11,7 @@ namespace unid
     {
         [DllImport("PowrProf.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             if (args.Length < 1)
             {
@@ -373,6 +373,11 @@ namespace unid
                             Console.WriteLine("Invalid subcommand -- Use help for help.");
                         }
                     }
+                }
+                else if (args[0] == "stopwatch")
+                {
+                    Console.Clear();
+                    stopwatch.ParseStopwatch();
                 }
                 else if (args[0] == "kill")
                 {

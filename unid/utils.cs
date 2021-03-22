@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace unid
 {
@@ -44,6 +46,35 @@ namespace unid
                         return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                     }
                 }
+        }
+    }
+    class stopwatch
+    {
+        public static void ParseStopwatch()
+        {
+            long sec = 0;
+            long min = 0;
+            long hr = 0;
+            long ms = 0;
+            while (true)
+            {
+                Thread.Sleep(1000);
+                if (sec < 60)
+                {
+                    sec += 1;
+                    Console.WriteLine($"{hr}:{min}:{sec}");
+                }
+                else
+                {
+                    sec = 0;
+                    min += 1;
+                }
+                if (min > 60)
+                {
+                    min = 0;
+                    hr += 1;
+                }
+            }
         }
     }
 }
