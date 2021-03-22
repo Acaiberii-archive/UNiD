@@ -18,6 +18,10 @@ namespace unid
             {
                 ar += arg + " ";
             }
+            if (ar.StartsWith(" "))
+            {
+                ar = ar.Substring(1);
+            }
             Console.WriteLine(ar);
         }
         public static void ParseTypewrite(string[] args)
@@ -27,6 +31,10 @@ namespace unid
             foreach (string arg in args)
             {
                 ar += arg + " ";
+            }
+            if (ar.StartsWith(" "))
+            {
+                ar = ar.Substring(1);
             }
             foreach (char ch in ar)
             {

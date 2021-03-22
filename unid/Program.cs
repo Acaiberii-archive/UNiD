@@ -13,6 +13,9 @@ namespace unid
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
         public static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("<=------------- UNiD -------------=>");
+            Console.ForegroundColor = ConsoleColor.White;
             if (args.Length < 1)
             {
                 Console.WriteLine("Please enter a command -- Use help for help.");
@@ -20,9 +23,6 @@ namespace unid
             else
             {
                 Console.Title = $"UNiD CMD - Parsing command {args[0]}.";
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("<=------------- UNiD -------------=>");
-                Console.ForegroundColor = ConsoleColor.White;
                 if (args[0] == "help")
                 {
                     DisplayHelp();
@@ -379,11 +379,18 @@ namespace unid
                     Console.Clear();
                     stopwatch.ParseStopwatch();
                 }
+                else if (args[0] == "fun")
+                {
+                    if (args.Length < 2)
+                    {
+                        Console.WriteLine("A subcommand is required.");
+                    }
+                }
                 else if (args[0] == "kill")
                 {
                     if (args.Length < 2)
                     {
-                        Console.WriteLine("An argument is required.");
+                        Console.WriteLine("One argument is required for the command.");
                     }
                     else
                     {
@@ -392,6 +399,10 @@ namespace unid
                         foreach (string arg in args)
                         {
                             argg += arg;
+                        }
+                        if (argg.StartsWith(" "))
+                        {
+                            argg = argg.Substring(1);
                         }
                         foreach (System.Diagnostics.Process pr in System.Diagnostics.Process.GetProcesses())
                         {
