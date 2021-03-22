@@ -28,4 +28,4 @@ Table of Contents:
   Install .NET 4.7+ if you haven't already. Download a release and extract the .zip file. Then, run the executable (.exe).
   
   # Building
-  Install .NET 4.7+. Run command line as administrator, and CD to the path. Then run ```autobuild 32``` or ```autobuild 64```.
+  Install .NET 4.7+. Run command line as administrator, and CD to UNiD's path. Then run ```autobuild 32``` or ```autobuild 64```. Make sure you've cloned the GitHub repo first.
