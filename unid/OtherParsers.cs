@@ -157,12 +157,12 @@ namespace unid
                 {
                     if (args[2] == "node")
                     {
-                        downloadapi.DownloadFile($"https://www.unid.studiouifxdesig.repl.co/node.msi", user + $@"\UNiDPackages\node.msi");
+                        downloadapi.DownloadFile($"", user + $@"\UNiDPackages\node.msi");
                         Process.Start(user + $@"\UNiDPackages\node.msi");
                     }
                     else
                     {
-                        downloadapi.DownloadFile($"https://www.unid.studiouifxdesig.repl.co/{args[2]}.exe", user + $@"\UNiDPackages\{args[2]}.exe");
+                        downloadapi.DownloadFile($"", user + $@"\UNiDPackages\{args[2]}.exe");
                         Process.Start(user + $@"\UNiDPackages\{args[2]}.exe");
                     }
                 }
