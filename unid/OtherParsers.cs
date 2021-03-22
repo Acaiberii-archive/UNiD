@@ -113,10 +113,6 @@ namespace unid
                     {
                         ParseDL(user, args, downloadapi);
                     }
-                    else if (args[2] == "node")
-                    {
-                        ParseDL(user, args, downloadapi);
-                    }
                     else
                     {
                         Console.WriteLine("Unknown package. Try again, or use the list subcommand.");
@@ -159,7 +155,16 @@ namespace unid
             {
                 try
                 {
-                    downloadapi.DownloadFile($"https://unid.studiouifxdesig.repl.co/{args[2]}.exe", user + $@"\UNiDPackages\{args[2]}.exe");
+                    if (args[2] == "node")
+                    {
+                        downloadapi.DownloadFile($"https://www.unid.studiouifxdesig.repl.co/node.msi", user + $@"\UNiDPackages\node.msi");
+                        Process.Start(user + $@"\UNiDPackages\node.msi");
+                    }
+                    else
+                    {
+                        downloadapi.DownloadFile($"https://www.unid.studiouifxdesig.repl.co/{args[2]}.exe", user + $@"\UNiDPackages\{args[2]}.exe");
+                        Process.Start(user + $@"\UNiDPackages\{args[2]}.exe");
+                    }
                 }
                 catch (WebException er)
                 {

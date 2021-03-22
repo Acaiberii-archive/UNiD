@@ -32,6 +32,7 @@ namespace register
             this.regbtn = new System.Windows.Forms.Button();
             this.pathh = new System.Windows.Forms.TextBox();
             this.cpath = new System.Windows.Forms.RichTextBox();
+            this.clearpathbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // regbtn
@@ -54,18 +55,29 @@ namespace register
             // 
             // cpath
             // 
-            this.cpath.Location = new System.Drawing.Point(12, 80);
+            this.cpath.Location = new System.Drawing.Point(12, 134);
             this.cpath.Name = "cpath";
             this.cpath.ReadOnly = true;
-            this.cpath.Size = new System.Drawing.Size(553, 116);
+            this.cpath.Size = new System.Drawing.Size(553, 62);
             this.cpath.TabIndex = 2;
             this.cpath.Text = "";
+            // 
+            // clearpathbtn
+            // 
+            this.clearpathbtn.Location = new System.Drawing.Point(12, 86);
+            this.clearpathbtn.Name = "clearpathbtn";
+            this.clearpathbtn.Size = new System.Drawing.Size(553, 36);
+            this.clearpathbtn.TabIndex = 3;
+            this.clearpathbtn.Text = "Clear PATH";
+            this.clearpathbtn.UseVisualStyleBackColor = true;
+            this.clearpathbtn.Click += new System.EventHandler(this.BtnClear);
             // 
             // mainui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 208);
+            this.Controls.Add(this.clearpathbtn);
             this.Controls.Add(this.cpath);
             this.Controls.Add(this.pathh);
             this.Controls.Add(this.regbtn);
@@ -81,6 +93,7 @@ namespace register
         private System.Windows.Forms.Button regbtn;
         private System.Windows.Forms.TextBox pathh;
         private System.Windows.Forms.RichTextBox cpath;
+        private System.Windows.Forms.Button clearpathbtn;
     }
 }
 

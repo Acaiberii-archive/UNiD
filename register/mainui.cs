@@ -41,7 +41,18 @@ namespace register
             }
             catch (Exception er)
             {
-                regbtn.Text = er.Message;
+                cpath.Text = er.Message;
+            }
+        }
+        public void BtnClear(object sender, EventArgs e)
+        {
+            try
+            {
+                Environment.SetEnvironmentVariable("PATH", "");
+            }
+            catch (Exception er)
+            {
+                cpath.Text = er.Message;
             }
         }
     }

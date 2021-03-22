@@ -13,6 +13,7 @@ namespace unid
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
         static void Main(string[] args)
         {
+            Console.Title = $"UNiD CMD - Operating command {args[2]}.";
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("<=------------- UNiD -------------=>");
             Console.ForegroundColor = ConsoleColor.White;
@@ -291,7 +292,6 @@ namespace unid
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("py - Python 3.9.2 (latest release as of 3/20/21)");
                             Console.WriteLine("java - Java 8 (recommended release on java.com)");
-                            Console.WriteLine("node - NodeJS Server-Side JavaScript");
                         }
                         else
                         {
@@ -318,6 +318,22 @@ namespace unid
                         Console.WriteLine("-- The console may not be working properly.");
                         Console.WriteLine($"- Exception: {er.Message}. Try restarting the command prompt or submitting an issue at https://www.github.com/AcaiBerii/UNiD");
                         Console.Beep();
+                    }
+                }
+                else if (args[0] == "tf")
+                {
+                    if (args.Length < 2)
+                    {
+                        Console.WriteLine("One argument is required for the command.");
+                    }
+                    else
+                    {
+                        foreach (char c in new StreamReader(args[1]).ReadToEnd())
+                        {
+                            System.Threading.Thread.Sleep(100);
+                            Console.Write(c);
+                        }
+                        Console.WriteLine("");
                     }
                 }
                 else if (args[0] == "debug")
@@ -409,12 +425,13 @@ namespace unid
             Console.WriteLine("net - Multiple interactions for your network. Subcommands: upload, download.");
             Console.WriteLine("echo - Echoes a given string.");
             Console.WriteLine("rf - Reads a file.");
+            Console.WriteLine("tf - Typewrites a file.");
+            Console.WriteLine("typewrite - Types a given string with delay between each character.");
             Console.WriteLine("sudo - Runs a program as administrator.");
             Console.WriteLine("pc - Multiple interactions for your computer. Subcommands: power - restart, shutdown, hibernate. ");
             Console.WriteLine("file - Multiple interactions for files. Subcommands: copy, remove, hash.");
             Console.WriteLine("dir - Multiple interactions for directories. Subcommands: copy, remove, list.");
             Console.WriteLine("theme - Changes the command line's theme. Subcommands: bright, dark, dracula.");
-            Console.WriteLine("typewrite - Types a given string with delay between each character.");
             Console.WriteLine("package - Installs packages. Subcommands: install, list.");
             Console.WriteLine("about - Shows information about UNiD.");
             Console.WriteLine("debug - Commands to debug UNiD with. Subcommands: error, web.");
