@@ -162,13 +162,12 @@ namespace unid
                     if (args[2] == "node")
                     {
                         downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/master/node.msi", user + $@"\UNiDPackages\node.msi");
-                        Process.Start("explorer.exe", user + @"\UNiDPackages\");
                     }
                     else
                     {
                         downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/master/{args[2]}.exe", user + $@"\UNiDPackages\{args[2]}.exe");
-                        admininter.Elevate(user + $@"\UNiDPackages\{args[2]}.exe");
                     }
+                    Process.Start("explorer.exe", user + @"\UNiDPackages\");
                 }
                 catch (WebException er)
                 {
