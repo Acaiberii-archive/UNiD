@@ -1,9 +1,12 @@
+UNiD/UNiD Console - Open-source package manager and command line utility.
+
 Table of Contents:
-[Home](#-Home)
-[Releases](#-Releases)
-[Path](#-Path)
-[Running](#-Running)
-[Building](#-Building)
+[Home](#-About) | 
+[Releases](#-Releases) | 
+[Path](#-Path) | 
+[Running](#-Running) | 
+[Building](#-Building) |
+[Contributing](#-Contributing)
 
 
 
@@ -15,7 +18,7 @@ Table of Contents:
 
 
 
-  # Home
+  # About
   Unid console is a new Windows command line utility that brings you the easiest and fastest commands.
   
   # Releases
@@ -28,4 +31,7 @@ Table of Contents:
   Install .NET 4.7+ if you haven't already. Download a release and extract the .zip file. Then, run the executable (.exe).
   
   # Building
-  Install .NET 4.7+. Run command line as administrator, and CD to UNiD's path. Then run ```autobuild 32``` or ```autobuild 64```. Make sure you've cloned the GitHub repo first.
+  Install .NET 4.7+. Run command line as administrator, and CD to UNiD's repo's path (clone the repo first). Then run ```autobuild 32``` or ```autobuild 64```.
+  
+  # Contributing
+  Fork this repository and make your changes, open a pull request and it will be reviewed.
