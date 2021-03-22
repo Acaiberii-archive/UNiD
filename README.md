@@ -21,7 +21,7 @@ Table of Contents:
   Releases are published when a new release is built.
   
   # Path
-  When a release is made, a file called "register.bat" is included in the .Zip file. Change your directory with CD from an administrator command line to the downloaded build, and then run "register.bat" from the command line.
+  When a release is made, a file will be in a .zip folder called "register".
   
   # Running
   Install .NET 4.7+ if you haven't already. Download a release and extract the .zip file. Then, run the executable (.exe).
