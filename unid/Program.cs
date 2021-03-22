@@ -13,7 +13,7 @@ namespace unid
         public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
         static void Main(string[] args)
         {
-            Console.Title = $"UNiD CMD - Operating command {args[2]}.";
+            Console.Title = $"UNiD CMD - Parsing command {args[0]}.";
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("<=------------- UNiD -------------=>");
             Console.ForegroundColor = ConsoleColor.White;

@@ -90,6 +90,7 @@ namespace unid
     {
         public static void ParsePkg(string[] args)
         {
+            Console.Title = $"UNiD CMD - Package manager installing {args[2]}.";
             try
             {
                 Console.WriteLine("Preparing package manager for use.");
@@ -170,26 +171,6 @@ namespace unid
                     Process.Start("explorer.exe", user + @"\UNiDPackages\");
                 }
                 catch (WebException er)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(er.Message);
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-                try
-                {
-                    bool isrunning = admininter.Elevate(user + $@"\UNiDPackages\{args[2]}.exe");
-                    if (isrunning == true)
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine($"Elevated {args[2]}.");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Could not elevate program.");
-                    }
-                }
-                catch (Exception er)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(er.Message);
