@@ -3,7 +3,8 @@ Table of Contents:
 [Releases](#-Releases) | 
 [Path](#-Path) | 
 [Running](#-Running) | 
-[Building](#-Building)
+[Building](#-Building) |
+[Contributing](#-Contributing)
 
 
 
@@ -29,3 +30,6 @@ Table of Contents:
   
   # Building
   Install .NET 4.7+. Run command line as administrator, and CD to UNiD's repo's path (clone the repo first). Then run ```autobuild 32``` or ```autobuild 64```.
+  
+  # Contributing
+  Fork this repository and make your changes, open a pull request and it will be reviewed.
