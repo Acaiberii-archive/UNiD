@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace unid
@@ -385,6 +386,13 @@ namespace unid
                     {
                         Console.WriteLine("A subcommand is required.");
                     }
+                    else
+                    {
+                        if (args[1] == "rainbow")
+                        {
+                            test.ParseRainbow();
+                        }
+                    }
                 }
                 else if (args[0] == "kill")
                 {
@@ -451,6 +459,7 @@ namespace unid
             Console.WriteLine("about - Shows information about UNiD.");
             Console.WriteLine("debug - Commands to debug UNiD with. Subcommands: error, web.");
             Console.WriteLine("kill - Kills a process based on the given argument.");
+            Console.WriteLine("fun - A collection of funny commands. Subcommands: rainbow.");
         }
     }
     class ErrorToThrow : Exception
