@@ -162,7 +162,7 @@ namespace unid
                     if (args[2] == "node")
                     {
                         downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/master/node.msi", user + $@"\UNiDPackages\node.msi");
-                        admininter.Elevate(user + $@"\UNiDPackages\node.msi");
+                        Process.Start("explorer.exe", user + @"\UNiDPackages\");
                     }
                     else
                     {
