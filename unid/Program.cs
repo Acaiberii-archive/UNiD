@@ -292,6 +292,13 @@ namespace unid
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("py - Python 3.9.2 (latest release as of 3/20/21)");
                             Console.WriteLine("java - Java 8 (recommended release on java.com)");
+                            Console.WriteLine("node - NodeJS Server Side Javascript");
+                            Console.WriteLine("register - UNiD %PATH% register utility.");
+                        }
+                        else if (args[1] == "info")
+                        {
+                            Console.WriteLine("UNiD downloads packages into your user folder, in a directory called 'UNiDPackages'.");
+                            Console.WriteLine("Packages can come in different formats, such as MSI or ZIP, along with EXE.");
                         }
                         else
                         {
@@ -459,7 +466,7 @@ namespace unid
             Console.WriteLine("file - Multiple interactions for files. Subcommands: copy, remove, hash.");
             Console.WriteLine("dir - Multiple interactions for directories. Subcommands: copy, remove, list.");
             Console.WriteLine("theme - Changes the command line's theme. Subcommands: bright, dark, dracula.");
-            Console.WriteLine("package - Installs packages. Subcommands: install, list.");
+            Console.WriteLine("package - Installs packages. Subcommands: install, list, info.");
             Console.WriteLine("about - Shows information about UNiD.");
             Console.WriteLine("debug - Commands to debug UNiD with. Subcommands: error, web.");
             Console.WriteLine("kill - Kills a process based on the given argument.");
