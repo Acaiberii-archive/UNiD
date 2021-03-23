@@ -23,7 +23,7 @@ namespace unid
                 Console.WriteLine("File downloaded to " + outpath);
                 Process.Start("explorer.exe", outpath);
             }
-            catch (WebException er)
+            catch (Exception er)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(er.Message);
@@ -47,7 +47,7 @@ namespace unid
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("File uploaded to " + outurl);
             }
-            catch (WebException er)
+            catch (Exception er)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(er.Message);
