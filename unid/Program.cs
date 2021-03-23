@@ -392,6 +392,10 @@ namespace unid
                         {
                             test.ParseRainbow();
                         }
+                        else if (args[1] == "ascii")
+                        {
+                            test.ParseASCII(args);
+                        }
                     }
                 }
                 else if (args[0] == "kill")
@@ -459,7 +463,7 @@ namespace unid
             Console.WriteLine("about - Shows information about UNiD.");
             Console.WriteLine("debug - Commands to debug UNiD with. Subcommands: error, web.");
             Console.WriteLine("kill - Kills a process based on the given argument.");
-            Console.WriteLine("fun - A collection of funny commands. Subcommands: rainbow.");
+            Console.WriteLine("fun - A collection of funny commands. Subcommands: rainbow, ascii.");
         }
     }
     class ErrorToThrow : Exception

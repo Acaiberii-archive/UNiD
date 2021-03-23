@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Threading;
 
@@ -71,6 +73,35 @@ namespace unid
                 Console.Clear();
                 Console.WriteLine("Fun!");
             }
+        }
+        public static void ParseASCII(string[] args)
+        {
+            string tourl = string.Empty;
+            args[0] = string.Empty;
+            args[1] = string.Empty;
+            foreach (string arg in args)
+            {
+                tourl += arg;
+            }
+            if (tourl.StartsWith("  ")) {
+                tourl = tourl.Substring(2);
+            }
+            else if (tourl.StartsWith(" "))
+            {
+                tourl = tourl.Substring(1);
+            }
+            tourl = tourl.Replace(" ", "+");
+            string html = string.Empty;
+            string url = $@"https://artii.herokuapp.com/make?text={tourl}&font=thin";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+            }
+            Console.Write(html);
         }
     }
 }
