@@ -94,6 +94,8 @@ namespace unid
                     }
                 }
             }
+            args[Convert.ToInt32(switchindexes[0])] = string.Empty;
+            args[Convert.ToInt32(switchindexes[0]) + 1] = string.Empty;
             return switchindexes.ToArray();
         }
     }

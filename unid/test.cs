@@ -79,19 +79,22 @@ namespace unid
         {
             try
             {
+                string font = string.Empty;
                 List<string> switches = new List<string>();
                 switches.Add("/font");
                 string[] switchindexes = switchparse.ParseSwitches(args, switches.ToArray());
-                string font = args[Convert.ToInt32(switchindexes[0]) + 1];
                 string url = string.Empty;
                 string tourl = string.Empty;
-                args[Convert.ToInt32(switchindexes[0])] = string.Empty;
-                args[Convert.ToInt32(switchindexes[0]) + 1] = string.Empty;
                 args[0] = string.Empty;
                 args[1] = string.Empty;
                 foreach (string arg in args)
                 {
                     tourl += arg;
+                }
+                if (tourl.Length == 0)
+                {
+                    Console.WriteLine("No text to get ASCII from.");
+                    return;
                 }
                 if (tourl.StartsWith("  "))
                 {
@@ -101,8 +104,7 @@ namespace unid
                 {
                     tourl = tourl.Substring(1);
                 }
-                url = $@"https://artii.herokuapp.com/make?text={tourl}&font={font}";
-                tourl = tourl.Replace(" ", "+");
+                url = $@"https://artii.herokuapp.com/make?text={tourl}";
                 string html = string.Empty;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.AutomaticDecompression = DecompressionMethods.GZip;
