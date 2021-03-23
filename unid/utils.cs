@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Principal;
@@ -75,6 +76,25 @@ namespace unid
                     hr += 1;
                 }
             }
+        }
+    }
+    class switchparse
+    {
+        public static string[] ParseSwitches(string[] args, string[] lookfor)
+        {
+            List<string> switchindexes = new List<string>();
+            foreach (var item in args.Select((value, i) => new { i, value }))
+            {
+                var value = item.value;
+                var index = item.i;
+                foreach (var arglook in lookfor) {
+                    if (item.value == arglook)
+                    {
+                        switchindexes.Add(item.i.ToString());
+                    }
+                }
+            }
+            return switchindexes.ToArray();
         }
     }
 }

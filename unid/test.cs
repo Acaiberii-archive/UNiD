@@ -79,24 +79,19 @@ namespace unid
         {
             try
             {
-                var fontdiv = 0;
-                var font = string.Empty;
+                List<string> switches = new List<string>();
+                switches.Add("/font");
+                string[] switchindexes = switchparse.ParseSwitches(args, switches.ToArray());
+                string font = args[Convert.ToInt32(switchindexes[0]) + 1];
                 string url = string.Empty;
                 string tourl = string.Empty;
+                args[Convert.ToInt32(switchindexes[0])] = string.Empty;
+                args[Convert.ToInt32(switchindexes[0]) + 1] = string.Empty;
                 args[0] = string.Empty;
                 args[1] = string.Empty;
                 foreach (string arg in args)
                 {
                     tourl += arg;
-                }
-                foreach (var item in args.Select((value, i) => new { i, value }))
-                {
-                    var value = item.value;
-                    var index = item.i;
-                    if (item.value == "/font")
-                    {
-                        fontdiv = item.i;
-                    }
                 }
                 if (tourl.StartsWith("  "))
                 {
@@ -106,16 +101,7 @@ namespace unid
                 {
                     tourl = tourl.Substring(1);
                 }
-                if (fontdiv == 0)
-                {
-                    Console.WriteLine("No font selected. We will use the default font.");
-                    url = $@"https://artii.herokuapp.com/make?text={tourl}";
-                }
-                else
-                {
-                    args[fontdiv] = string.Empty;
-                    url = $@"https://artii.herokuapp.com/make?text={tourl}&font={args[fontdiv + 1]}";
-                }
+                url = $@"https://artii.herokuapp.com/make?text={tourl}&font={font}";
                 tourl = tourl.Replace(" ", "+");
                 string html = string.Empty;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
