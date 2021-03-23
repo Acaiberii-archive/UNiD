@@ -1,4 +1,4 @@
-<img src="unid.png" width="48">
+<img src="unid.png" width="100">
 
 UNiD/UNiD Console - Open-source package manager and command line utility.
 
