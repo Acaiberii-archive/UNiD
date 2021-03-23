@@ -1,4 +1,5 @@
-![UNiD Icon](unid.png)
+![](unid.png | width=100)
+
 UNiD/UNiD Console - Open-source package manager and command line utility.
 
 Table of Contents:
