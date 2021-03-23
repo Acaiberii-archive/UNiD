@@ -467,7 +467,8 @@ namespace unid
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(">==->==->==- Switches");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("fun ascii - /font (font)");
+            Console.WriteLine("Switches are not added, although the parser has been made.");
+            Console.WriteLine("Check our GitHub for more changes. https://www.github.com/AcaiBerii/UNiD/");
         }
     }
     class ErrorToThrow : Exception

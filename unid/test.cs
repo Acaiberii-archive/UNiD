@@ -80,9 +80,6 @@ namespace unid
             try
             {
                 string font = string.Empty;
-                List<string> switches = new List<string>();
-                switches.Add("/font");
-                string[] switchindexes = switchparse.ParseSwitches(args, switches.ToArray());
                 string url = string.Empty;
                 string tourl = string.Empty;
                 args[0] = string.Empty;
