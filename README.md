@@ -1,4 +1,4 @@
-![](unid.png | width=100)
+<img src="unid.png" width="48">
 
 UNiD/UNiD Console - Open-source package manager and command line utility.
 
