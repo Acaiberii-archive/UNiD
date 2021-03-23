@@ -1,4 +1,5 @@
-![UNiD Icon](unid.png)
+<img src="unid.png" width="100">
+
 UNiD/UNiD Console - Open-source package manager and command line utility.
 
 Table of Contents:
@@ -29,7 +30,7 @@ Table of Contents:
   When a release is made, a file named "register.exe" will be in a .zip folder with the name "register.zip".
   
   # Running
-  Install .NET 4.7+ if you haven't already. Download a release and extract the .zip file. Then, run the executable (.exe).
+  Install .NET 4.7+ if you haven't already. Download a release and extract the .zip file. Then, run the executable (.exe). You are allowed to use AutoBuild in your own C#.NET projects.
   
   # Building
   Install .NET 4.7+ and MSBUILD/Build Tools. Run command line as administrator, and CD to UNiD's repo's path (clone the repo first). Then run ```autobuild 32``` or ```autobuild 64```.
