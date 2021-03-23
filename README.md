@@ -1,3 +1,4 @@
+![UNiD Icon](unid.png)
 UNiD/UNiD Console - Open-source package manager and command line utility.
 
 Table of Contents:
