@@ -294,6 +294,7 @@ namespace unid
                             Console.WriteLine("java - Java 8 (recommended release on java.com)");
                             Console.WriteLine("node - NodeJS Server Side Javascript");
                             Console.WriteLine("register - UNiD %PATH% register utility.");
+                            Console.WriteLine("multipackager - Multi-package manager, made by robtech21 on github.");
                         }
                         else if (args[1] == "info")
                         {

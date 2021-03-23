@@ -130,6 +130,11 @@ namespace unid
                     {
                         ParseDL(user, args, downloadapi);
                     }
+                    else if (args[2] == "multipackager")
+                    {
+                        Console.WriteLine("MultiPackager is still in development. It will be released and we will add it. Thank you.");
+                        Console.WriteLine("MultiPackager is made by https://www.github.com/robtech21 and will only be distributed when released.");
+                    }
                     else
                     {
                         Console.WriteLine("Unknown package. Try again, or use the list subcommand.");
