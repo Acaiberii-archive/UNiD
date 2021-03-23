@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -76,32 +77,64 @@ namespace unid
         }
         public static void ParseASCII(string[] args)
         {
-            string tourl = string.Empty;
-            args[0] = string.Empty;
-            args[1] = string.Empty;
-            foreach (string arg in args)
+            try
             {
-                tourl += arg;
+                var fontdiv = 0;
+                var font = string.Empty;
+                string url = string.Empty;
+                string tourl = string.Empty;
+                args[0] = string.Empty;
+                args[1] = string.Empty;
+                foreach (string arg in args)
+                {
+                    tourl += arg;
+                }
+                foreach (var item in args.Select((value, i) => new { i, value }))
+                {
+                    var value = item.value;
+                    var index = item.i;
+                    if (item.value == "/font")
+                    {
+                        fontdiv = item.i;
+                    }
+                }
+                if (tourl.StartsWith("  "))
+                {
+                    tourl = tourl.Substring(2);
+                }
+                else if (tourl.StartsWith(" "))
+                {
+                    tourl = tourl.Substring(1);
+                }
+                if (fontdiv == 0)
+                {
+                    Console.WriteLine("No font selected. We will use the default font.");
+                    url = $@"https://artii.herokuapp.com/make?text={tourl}";
+                }
+                else
+                {
+                    args[fontdiv] = string.Empty;
+                    url = $@"https://artii.herokuapp.com/make?text={tourl}&font={args[fontdiv + 1]}";
+                }
+                tourl = tourl.Replace(" ", "+");
+                string html = string.Empty;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.AutomaticDecompression = DecompressionMethods.GZip;
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    html = reader.ReadToEnd();
+                }
+                Console.Write(html);
             }
-            if (tourl.StartsWith("  ")) {
-                tourl = tourl.Substring(2);
-            }
-            else if (tourl.StartsWith(" "))
+            catch (Exception er)
             {
-                tourl = tourl.Substring(1);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(er.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                return;
             }
-            tourl = tourl.Replace(" ", "+");
-            string html = string.Empty;
-            string url = $@"https://artii.herokuapp.com/make?text={tourl}&font=thin";
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                html = reader.ReadToEnd();
-            }
-            Console.Write(html);
         }
     }
 }

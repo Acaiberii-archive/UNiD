@@ -464,6 +464,10 @@ namespace unid
             Console.WriteLine("debug - Commands to debug UNiD with. Subcommands: error, web.");
             Console.WriteLine("kill - Kills a process based on the given argument.");
             Console.WriteLine("fun - A collection of funny commands. Subcommands: rainbow, ascii.");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(">==->==->==- Switches");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("fun ascii - /font (font)");
         }
     }
     class ErrorToThrow : Exception
