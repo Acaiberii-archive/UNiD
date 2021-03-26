@@ -126,6 +126,10 @@ namespace unid
                     {
                         ParseDL(user, args, downloadapi);
                     }
+                    else if (args[2] == "bulkimageresizer")
+                    {
+                        ParseDL(user, args, downloadapi);
+                    }
                     else if (args[2] == "register")
                     {
                         ParseDL(user, args, downloadapi);
@@ -179,6 +183,10 @@ namespace unid
                     else if (args[2] == "register")
                     {
                         downloadapi.DownloadFile("https://github.com/AcaiBerii/UNiD/releases/download/1.0.0-x32/register.zip", user + @"\UNiDPackages\register.zip");
+                    }
+                    else if (args[2] == "bulkimageresizer")
+                    {
+                        downloadapi.DownloadFile("https://github.com/AcaiBerii/BulkImageResizer/raw/master/v1.zip", user + @"\UNiDPackages\bulkimageresizer.zip");
                     }
                     else
                     {
