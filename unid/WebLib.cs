@@ -19,7 +19,7 @@ namespace unid
             {
                 WebClient downloadapi = new WebClient();
                 downloadapi.DownloadFile(inurl, outpath);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
                 Console.WriteLine("File downloaded to " + outpath);
                 Process.Start("explorer.exe", outpath);
             }
@@ -27,7 +27,7 @@ namespace unid
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(er.Message);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
             }
         }
     }
@@ -44,14 +44,14 @@ namespace unid
             {
                 WebClient downloadapi = new WebClient();
                 downloadapi.UploadFile(outurl, inpath);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
                 Console.WriteLine("File uploaded to " + outurl);
             }
             catch (Exception er)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(er.Message);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
             }
         }
     }

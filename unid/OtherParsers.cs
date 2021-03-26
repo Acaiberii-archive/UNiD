@@ -58,7 +58,7 @@ namespace unid
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(er.Message);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
             }
         }
     }
@@ -77,20 +77,21 @@ namespace unid
                 bool isrunning = admininter.Elevate(cm);
                 if (isrunning == true)
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ResetColor();
                     Console.WriteLine("Elevated program.");
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Could not elevate program.");
+                    Console.ResetColor();
                 }
             }
             catch (Exception er)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(er.Message);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
             }
         }
     }
@@ -148,13 +149,13 @@ namespace unid
                         Console.WriteLine("User information verified and directory created. Please retype the command.");
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("You won't have to do this again unless you switch accounts.");
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ResetColor();
                     }
                     catch (Exception er)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(er.Message);
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ResetColor();
                     }
                 }
             }
@@ -198,7 +199,7 @@ namespace unid
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(er.Message);
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ResetColor();
                 }
                 Console.WriteLine(@$"{args[2]} installed.");
             }

@@ -16,7 +16,7 @@ namespace unid
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("<=------------- UNiD -------------=>");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
             if (args.Length < 1)
             {
                 Console.WriteLine("Please enter a command -- Use help for help.");
@@ -367,7 +367,7 @@ namespace unid
                             catch (Exception er) {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine(er.Message);
-                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ResetColor();
                                 if (er.Message.ToLower().Contains("no such host is known"))
                                 {
                                     Console.WriteLine("UNiD Debug Err 01: No connection to example.com available.");
@@ -375,7 +375,7 @@ namespace unid
                                 }
                                 Console.Beep();
                             }
-                        } 
+                        }
                         else
                         {
                             Console.WriteLine("Invalid subcommand -- Use help for help.");
@@ -436,11 +436,21 @@ namespace unid
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine(er.Message);
-                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ResetColor();
                             }
                         }
                         Console.WriteLine("Attempted to find and kill program with name containing " + argg + ".");
                     }
+                }
+                else if (args[0] == "github")
+                {
+                    Console.WriteLine("A penny saved is a penny earned.");
+                    var psi = new ProcessStartInfo
+                    {
+                        FileName = "https://www.github.com/AcaiBerii/UNiD/",
+                        UseShellExecute = true
+                    };
+                    Process.Start(psi);
                 }
                 else
                 {
@@ -454,7 +464,7 @@ namespace unid
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(">==->==->==- Commands");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
             Console.WriteLine("help - Displays help page.");
             Console.WriteLine("net - Multiple interactions for your network. Subcommands: upload, download.");
             Console.WriteLine("echo - Echoes a given string.");
@@ -465,15 +475,16 @@ namespace unid
             Console.WriteLine("pc - Multiple interactions for your computer. Subcommands: power - restart, shutdown, hibernate. ");
             Console.WriteLine("file - Multiple interactions for files. Subcommands: copy, remove, hash.");
             Console.WriteLine("dir - Multiple interactions for directories. Subcommands: copy, remove, list.");
-            Console.WriteLine("theme - Changes the command line's theme. Subcommands: bright, dark, dracula.");
+            Console.WriteLine("theme - Changes the command line's theme. Arguments: bright/dark/dracula.");
             Console.WriteLine("package - Installs packages. Subcommands: install, list, info.");
             Console.WriteLine("about - Shows information about UNiD.");
             Console.WriteLine("debug - Commands to debug UNiD with. Subcommands: error, web.");
             Console.WriteLine("kill - Kills a process based on the given argument.");
             Console.WriteLine("fun - A collection of funny commands. Subcommands: rainbow, ascii.");
+            Console.WriteLine("github - Shows the GitHub page of UNiD.");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(">==->==->==- Switches");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
             Console.WriteLine("Switches are not added, although the parser has been made.");
             Console.WriteLine("Check our GitHub for more changes. https://www.github.com/AcaiBerii/UNiD/");
         }

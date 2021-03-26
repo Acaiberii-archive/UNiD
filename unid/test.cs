@@ -117,7 +117,7 @@ namespace unid
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(er.Message);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
                 return;
             }
         }
