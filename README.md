@@ -27,7 +27,7 @@ Table of Contents:
   Releases are published when a new release is built.
   
   # Path
-  When a release is made, a file named "register.exe" will be in a .zip folder with the name "register.zip".
+  Run unid from the command line with "unid package install register".
   
   # Running
   Install .NET 4.7+ if you haven't already. Download a release and extract the .zip file. Then, run the executable (.exe). You are allowed to use AutoBuild in your own C#.NET projects.
