@@ -444,7 +444,6 @@ namespace unid
                 }
                 else if (args[0] == "github")
                 {
-                    Console.WriteLine("A penny saved is a penny earned.");
                     var psi = new ProcessStartInfo
                     {
                         FileName = "https://www.github.com/AcaiBerii/UNiD/",

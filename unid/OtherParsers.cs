@@ -131,6 +131,10 @@ namespace unid
                     {
                         ParseDL(user, args, downloadapi);
                     }
+                    else if (args[2] == "mictest")
+                    {
+                        ParseDL(user, args, downloadapi);
+                    }
                     else if (args[2] == "register")
                     {
                         ParseDL(user, args, downloadapi);
@@ -179,7 +183,7 @@ namespace unid
                 {
                     if (args[2] == "node")
                     {
-                        downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/master/node.msi", user + $@"\UNiDPackages\node.msi");
+                        downloadapi.DownloadFile($"https://raw.githubusercontent.com/AcaiBerii/UNiD/raw/master/node.msi", user + $@"\UNiDPackages\node.msi");
                     }
                     else if (args[2] == "register")
                     {
@@ -188,6 +192,10 @@ namespace unid
                     else if (args[2] == "bulkimageresizer")
                     {
                         downloadapi.DownloadFile("https://github.com/AcaiBerii/BulkImageResizer/raw/master/v1.zip", user + @"\UNiDPackages\bulkimageresizer.zip");
+                    }
+                    else if (args[2] == "mictest")
+                    {
+                        downloadapi.DownloadFile("https://github.com/AcaiBerii/UNiD/raw/master/MicTest.zip", user + @"\UNiDPackages\mictest.zip");
                     }
                     else
                     {
